@@ -1,8 +1,10 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from decouple import config
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv() 
 
-MONGO_URI = config("MONGO_URI", default="")
-MONGO_DB_NAME = config("MONGO_DB_NAME", default="")
+MONGO_URI = getenv("MONGO_URI")
+MONGO_DB_NAME = getenv("MONGO_DB_NAME")
 
 client = AsyncIOMotorClient(MONGO_URI)
 db = client[MONGO_DB_NAME]

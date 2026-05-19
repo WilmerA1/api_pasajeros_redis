@@ -18,10 +18,11 @@ class RutaModel(BaseModel):
     anno: int
     pasajero_equivalente: Optional[float] = None
     pasajerosTotal: Optional[str] = None
-    pasajeros_adulto_mayor: Optional[int] = 0
-    pasajeros_regulares: Optional[int] = 0
-    carreras: Optional[float] = 0
-    ingresos: Optional[int] = 0
+    
+    pasajeros_adulto_mayor: int
+    pasajeros_regulares: int
+    carreras: float
+    ingresos: int
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -4,9 +4,14 @@ from app.cache.redis import redis_cache
 from app.db.mongo import db
 from app.models.ruta_model import RutaModel
 from typing import List
-from decouple import config
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv() 
 
-REDIS_TTL = config("REDIS_TTL", default=10)
+from pydantic import ValidationError 
+
+
+REDIS_TTL = int(getenv("REDIS_TTL"))
 
 @redis_cache(ttl_seconds=REDIS_TTL)
 async def get_all_rutas() -> List[RutaModel]:

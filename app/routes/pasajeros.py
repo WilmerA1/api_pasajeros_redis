@@ -3,12 +3,14 @@ from typing import List
 from app.cache.redis import check_redis_connection, redis_cache
 from app.models.ruta_model import RutaModel
 from app.db.mongo import db
-from decouple import config
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv()
 import asyncio
 
 from app.services import pasajeros_service
 
-REDIS_TTL = config("REDIS_TTL", default=10)
+REDIS_TTL = int(getenv("REDIS_TTL"))
 
 pasajeros = APIRouter(
     prefix="/pasajeros",

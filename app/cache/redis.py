@@ -5,11 +5,13 @@ from typing import Callable
 from bson import json_util
 
 from redis.asyncio import Redis
-from decouple import config
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv() 
 
-REDIS_HOST = config("REDIS_HOST", default="")
-REDIS_PORT = config("REDIS_PORT", default=6379)
-REDIS_DB = config("REDIS_DB", default=0)
+REDIS_HOST = getenv("REDIS_HOST")
+REDIS_PORT = int(getenv("REDIS_PORT"))
+REDIS_DB = int(getenv("REDIS_DB"))
 
 redis_client = Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB, decode_responses=True)
 
